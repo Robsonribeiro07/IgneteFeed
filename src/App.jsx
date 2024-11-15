@@ -1,4 +1,6 @@
-  import { Header } from "./components/header";
+  import { Header } from "./components/Header.jsx";
+  import { Sidebar } from "../src/components/Sidebar.jsx";
+  import { Post } from "./components/Post.jsx";
 
   import '../src/global.css'
    
@@ -8,16 +10,17 @@
   return (
    
     <div className="div">
+
       <Header/>
 
-
-      <div className={style.wrapper}>
-        <aside>
-          sidebar
-        </aside>
+      <div className={style.wrapper}> 
+        
+            <Sidebar />
+              
 
         <main>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore voluptate eum quibusdam, atque, corrupti iste animi nihil officia aliquid error necessitatibus voluptatibus explicabo ducimus laborum, iure id dolores alias libero!
+          <Post/>
+          <Post/>
         </main>
       </div>
 
