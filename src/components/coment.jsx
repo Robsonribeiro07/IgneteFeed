@@ -1,10 +1,37 @@
  import { ThumbsUp, Trash } from '@phosphor-icons/react'
 import style from './coment.module.css'
-export function Comment (){
+import { Avatar } from './avatar'
+import { useState } from 'react'
+
+
+export function Comment ({content, handleDeleteComent}){
+    let likeInterval = null; // Para armazenar o intervalo de execução dos likes contínuos
+
+
+     const [likes, setLikes] = useState(0)
+
+
+     const handleLikeComments = () => {
+
+        setLikes((states)=> { // usando uma arrow funcion para pega o argumento e retornando + 1 no caso o states gurada sempre o valor atual do likes
+            
+            return states + 1
+        })
+        // Implementar a logica para salvar o numero de likes no seu backend, caso necessario.
+ 
+    }
+
+    function handleDeleteComentt(){
+
+        handleDeleteComent(content)
+    }
+
+    
+    
     return (
         <div className={style.comment}>
 
-            <img src="https://avatars.githubusercontent.com/u/187860964?v=4" alt="" />
+            <Avatar hasBorder={false} src="https://avatars.githubusercontent.com/u/187860964?v=4" alt="" />
 
             <div className={style.commentBox}>
                 <div className={style.commentContent}>
@@ -15,13 +42,13 @@ export function Comment (){
                     </div>
 
 
-                    <button title='Deletar comentario'>
+                    <button title='Deletar comentario' onClick={handleDeleteComentt} >
                         <Trash size={20}/>
                     </button>
                  </header>
 
                  
-                 <p>Muito bom dev, Parabens!!</p>
+                 <p>{content}</p>
 
               
                 </div>
@@ -29,8 +56,8 @@ export function Comment (){
 
                 <footer>
                     <button>
-                        <ThumbsUp />
-                        Aplaudir <span>20</span>
+                        <ThumbsUp onClick={handleLikeComments}   />
+                        Aplaudir <span>{likes}</span>
                     </button>
                 </footer>
             </div>
